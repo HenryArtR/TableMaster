@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
 import { TableComponent } from './components/table/table.component';
+import { HomeComponent } from './pages/home.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 
@@ -11,7 +14,9 @@ import { TableComponent } from './components/table/table.component';
     TableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTableModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }

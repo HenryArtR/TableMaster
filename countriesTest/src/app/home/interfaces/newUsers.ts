@@ -1,6 +1,6 @@
 
 export interface NewUsers {
-    img: string;
+    image: string;
     name: string;
     surname: string;
     country: string;

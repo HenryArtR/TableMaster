@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { RandomUserService } from 'src/app/services/random-user.service';
 import { NewUsers } from '../interfaces/newUsers';
-import { Name } from '../interfaces/randomUser';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +9,13 @@ import { Name } from '../interfaces/randomUser';
 })
 export class HomeComponent implements OnInit {
 
-  columnsName: string[] = [
-    'image',
-    'name',
-    'surname',
-    'country',
-    'delete',
-  ]
-
+  columnsName: string[] = ['image','name','surname','country']
   newUser: NewUsers[] = []
+
+  show: boolean = false
+
+
   
-
-
   constructor(private rUsers: RandomUserService) { }
 
   ngOnInit(): void {
@@ -29,7 +23,7 @@ export class HomeComponent implements OnInit {
       
       resp.results.map(result =>{
         let users = {
-          img: result.picture.thumbnail,
+          image: result.picture.thumbnail,
           name: result.name.first,
           surname: result.name.last,
           country: result.location.country
@@ -37,8 +31,27 @@ export class HomeComponent implements OnInit {
         this.newUser.push(users)
       })
     })
-    console.log(this.newUser)
-    
+  }
+
+  viewColor(){
+    this.show = !this.show
+  }
+
+  changeColor(i: number){
+    if(this.show){
+      return i%2==0 ? 'color1':'color2'
+    }else{
+      return ''
+    }
+  }
+
+  
+
+  sortCountry(){
+
+  }
+  restore(){
+
   }
 
 }

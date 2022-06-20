@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   newUser: NewUsers[] = []
 
   show: boolean = false
+  order:boolean = false
+  orderBy: string = ''
 
 
   
@@ -48,8 +50,10 @@ export class HomeComponent implements OnInit {
   
 
   sortCountry(){
-
+    this.order = !this.order
+    this.order ? this.orderBy = 'country': this.orderBy = 'reset'
   }
+
   restore(){
 
   }

@@ -17,7 +17,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let users of newUser; let i=index" [class]="changeColor(i)" class="hover">
+                  <tr *ngFor="let users of newUser | order: orderBy; let i=index" [class]="changeColor(i)" class="hover">
                     <td>
                         <img [src]="users.image" alt="">
                     </td>

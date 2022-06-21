@@ -3,9 +3,9 @@
     <h1 class="text-center">Interview task</h1>
     <div class="row">
         <div class="col d-flex justify-content-center pb-3">
-            <button class="m-1 btn btn-primary btn-sm" (click)="viewColor()">Colored rows</button>
-            <button class="m-1 btn btn-primary" (click)="sortCountry()">Sort by country</button>
-            <button class="m-1 btn btn-primary" (click)="restore()">Restore the init state</button>
+            <button class="m-1 btn" (click)="viewColor()">Colored rows</button>
+            <button class="m-1 btn" (click)="sortCountry()">Sort by country</button>
+            <button class="m-1 btn" (click)="restore()">Restore the init state</button>
         </div>
     </div>
     <div class="row">
@@ -24,6 +24,7 @@
                     <td>{{users.name}}</td>
                     <td>{{users.surname}}</td>
                     <td>{{users.country}}</td>
+                    <td><button (click)="killUser(i)">delete</button></td>
                   </tr>
                 </tbody>
             </table>

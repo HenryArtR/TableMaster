@@ -9,7 +9,7 @@ import { NewUsers } from '../interfaces/newUsers';
 })
 export class HomeComponent {
 
-  columnsName: string[] = ['image','name','surname','country']
+  columnsName: string[] = ['image','name','surname','country','delete']
   newUser: NewUsers[] = []
   originalUsr: NewUsers[] = []
 
@@ -47,15 +47,18 @@ export class HomeComponent {
     }
   }
 
-  
-
   sortCountry(){
     this.order = !this.order
     this.order ? this.orderBy = 'country': this.orderBy = 'reset'
   }
 
   restore(){
+    this.newUser = [...this.originalUsr]
     this.orderBy = ''
+  }
+
+  killUser(i:number){
+    this.newUser.splice(i,1)
   }
 
 }

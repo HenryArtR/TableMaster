@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  randomUser: 'https://randomuser.me/ap/?results=100'
+  randomUser: 'https://randomuser.me/api/?results=100'
 };
 
 /*

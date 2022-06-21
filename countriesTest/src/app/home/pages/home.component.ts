@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RandomUserService } from 'src/app/services/random-user.service';
 import { NewUsers } from '../interfaces/newUsers';
 
@@ -7,10 +7,11 @@ import { NewUsers } from '../interfaces/newUsers';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   columnsName: string[] = ['image','name','surname','country']
   newUser: NewUsers[] = []
+  originalUsr: NewUsers[] = []
 
   show: boolean = false
   order:boolean = false
@@ -18,9 +19,7 @@ export class HomeComponent implements OnInit {
 
 
   
-  constructor(private rUsers: RandomUserService) { }
-
-  ngOnInit(): void {
+  constructor(private rUsers: RandomUserService) {
     this.rUsers.getUsers().subscribe(resp=>{
       
       resp.results.map(result =>{
@@ -30,8 +29,9 @@ export class HomeComponent implements OnInit {
           surname: result.name.last,
           country: result.location.country
         }
-        this.newUser.push(users)
+        this.originalUsr.push(users)
       })
+      this.newUser = [...this.originalUsr]
     })
   }
 
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   restore(){
-
+    this.orderBy = ''
   }
 
 }

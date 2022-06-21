@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { RandomUserService } from 'src/app/services/random-user.service';
 import { NewUsers } from '../interfaces/newUsers';
 
@@ -10,18 +11,23 @@ import { NewUsers } from '../interfaces/newUsers';
 export class HomeComponent {
 
   columnsName: string[] = ['image','name','surname','country','delete']
-  newUser: NewUsers[] = []
+  newUser    : NewUsers[] = []
   originalUsr: NewUsers[] = []
+  
+  isLoading:boolean = false
+  isShow   : boolean = false
+  isOrder  :boolean = false
 
-  show: boolean = false
-  order:boolean = false
   orderBy: string = ''
+  msgErr : string = ''
 
 
   
-  constructor(private rUsers: RandomUserService) {
+  constructor(private rUsers: RandomUserService, private router: Router) {
     this.rUsers.getUsers().subscribe(resp=>{
-      
+      if(this.originalUsr.length <= 0){
+        this.isLoading = true
+      }
       resp.results.map(result =>{
         let users = {
           image: result.picture.thumbnail,
@@ -32,24 +38,23 @@ export class HomeComponent {
         this.originalUsr.push(users)
       })
       this.newUser = [...this.originalUsr]
+    }, err => {
+      router.navigate(['Error404'])
     })
   }
 
   viewColor(){
-    this.show = !this.show
+    this.isShow = !this.isShow
   }
 
   changeColor(i: number){
-    if(this.show){
-      return i%2==0 ? 'color1':'color2'
-    }else{
-      return ''
-    }
+    if(this.isShow) return i%2==0 ? 'color1':'color2';
+    return
   }
 
   sortCountry(){
-    this.order = !this.order
-    this.order ? this.orderBy = 'country': this.orderBy = 'reset'
+    this.isOrder = !this.isOrder
+    this.isOrder ? this.orderBy = 'country': this.orderBy = 'reset'
   }
 
   restore(){

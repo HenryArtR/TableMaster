@@ -1,22 +1,31 @@
 
-<div class="container">
-    <h1 class="text-center">Interview task</h1>
+<div #info class="container">
+    <h1 class="text-center pt-3">Interview task</h1>
     <div class="row">
+        <!-- buttons -->
         <div class="col d-flex justify-content-center pb-3">
-            <button class="m-1 btn" (click)="viewColor()">Colored rows</button>
-            <button class="m-1 btn" (click)="sortCountry()">Sort by country</button>
-            <button class="m-1 btn" (click)="restore()">Restore the init state</button>
+            <button class="m-1 btn btn-primary" (click)="viewColor()">Colored rows</button>
+            <button class="m-1 btn btn-primary" (click)="sortCountry()">Sort by country</button>
+            <button class="m-1 btn btn-primary" (click)="restore()">Restore the init state</button>
         </div>
+        <!-- end -->
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!isLoading; else table">
+        <h1 class="text-center">Loading...</h1>
+        
+    </div>
+    <ng-template #table class="row">
         <div class="col">
             <table class="table">
                 <thead>
+                    <!-- title of table -->
                   <tr>
-                    <th *ngFor="let column of columnsName" scope="col">{{column}}</th>
+                    <th *ngFor="let column of columnsName" scope="col">{{column | titlecase}}</th>
                   </tr>
+                    <!-- end -->
                 </thead>
                 <tbody>
+                    <!-- content of table -->
                   <tr *ngFor="let users of newUser | order: orderBy; let i=index" [class]="changeColor(i)" class="hover">
                     <td>
                         <img [src]="users.image" alt="">
@@ -24,12 +33,13 @@
                     <td>{{users.name}}</td>
                     <td>{{users.surname}}</td>
                     <td>{{users.country}}</td>
-                    <td><button (click)="killUser(i)">delete</button></td>
+                    <td><button class="btn btn-danger" (click)="killUser(i)">delete</button></td>
                   </tr>
+                  <!-- end -->
                 </tbody>
             </table>
         </div>
-    </div>
+    </ng-template>
 </div>
 
   

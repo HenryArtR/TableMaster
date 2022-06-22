@@ -10,10 +10,13 @@
         </div>
         <!-- end -->
     </div>
+
+    <!-- loading msg -->
     <div class="row" *ngIf="!isLoading; else table">
         <h1 class="text-center">Loading...</h1>
-        
     </div>
+    <!-- end -->
+
     <ng-template #table class="row">
         <div class="col">
             <table class="table">

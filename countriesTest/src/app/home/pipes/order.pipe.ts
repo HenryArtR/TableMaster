@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { NewUsers } from '../interfaces/newUsers';
-import { HomeComponent } from '../pages/home.component';
 
 @Pipe({
   name: 'order'
 })
+
 export class OrderPipe implements PipeTransform {
-  constructor(private home: HomeComponent){}
 
   transform(user: NewUsers[], orderBy: string ): NewUsers[] {
     

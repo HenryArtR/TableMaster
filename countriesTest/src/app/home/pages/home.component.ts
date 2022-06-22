@@ -11,8 +11,8 @@ import { NewUsers } from '../interfaces/newUsers';
 export class HomeComponent {
 
   columnsName: string[] = ['image','name','surname','country','delete']
-  newUser    : NewUsers[] = []
   originalUsr: NewUsers[] = []
+  newUser    : NewUsers[] = []
   
   isLoading:boolean = false
   isShow   : boolean = false
